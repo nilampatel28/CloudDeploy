@@ -1,0 +1,14 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# SSH Keys
+terraform/clouddeploy-key
+terraform/clouddeploy-key.pub
+
+# Node.js
+node_modules/
+npm-debug.log
+.env

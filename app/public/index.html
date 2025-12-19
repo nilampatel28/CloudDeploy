@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern AWS Node App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <nav>
+            <div class="logo">CloudDeploy</div>
+            <div class="status-badge" id="app-status">
+                <span class="pulse"></span>
+                <span id="status-text">Connecting...</span>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1>AWS EC2 Deployment <span class="gradient-text">Simplified</span></h1>
+            <p>Your application is now running on a high-performance AWS EC2 instance, containerized with Docker and managed by Terraform.</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="label">Server Status</span>
+                    <span class="value" id="status-val">---</span>
+                </div>
+                <div class="metric-card">
+                    <span class="label">Uptime</span>
+                    <span class="value" id="uptime-val">---</span>
+                </div>
+                <div class="metric-card">
+                    <span class="label">Environment</span>
+                    <span class="value" id="env-val">---</span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary">Instance Details</button>
+                <button class="btn btn-secondary">Documentation</button>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 CloudDeploy Tutorial. Made for YouTube.</p>
+        </footer>
+    </main>
+
+    <script>
+        async function updateStatus() {
+            try {
+                const res = await fetch('/api/status');
+                const data = await res.json();
+                
+                document.getElementById('status-text').textContent = data.status;
+                document.getElementById('status-val').textContent = data.status;
+                document.getElementById('env-val').textContent = data.environment;
+                
+                const uptimeHrs = (data.uptime / 3600).toFixed(2);
+                document.getElementById('uptime-val').textContent = `${uptimeHrs} hrs`;
+            } catch (err) {
+                document.getElementById('status-text').textContent = 'Offline';
+                document.getElementById('status-val').textContent = 'Error';
+            }
+        }
+
+        setInterval(updateStatus, 5000);
+        updateStatus();
+    </script>
+</body>
+</html>
