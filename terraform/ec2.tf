@@ -58,7 +58,7 @@ resource "aws_instance" "CloudDeploy" {
               sudo systemctl start docker
               sudo systemctl enable docker
               # Pull and run your app from Docker Hub
-              sudo docker run -d -p 3000:3000 amitabhdevops/modern-node-app
+              sudo docker run -d -p 3000:3000 amitabhdevops/clouddeploy
               EOF
 
   tags = {
