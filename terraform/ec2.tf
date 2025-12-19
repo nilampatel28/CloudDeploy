@@ -65,3 +65,4 @@ resource "aws_instance" "CloudDeploy" {
     Name = "CloudDeploy"
   }
 
+}
