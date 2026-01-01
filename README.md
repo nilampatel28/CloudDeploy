@@ -1,4 +1,4 @@
-# AWS EC2 Deployment with Terraform & Docker 🚀
+# AWS EC2 Deployment with Terraform & Docker 
 
 This repository contains everything you need to deploy a modern Node.js application to an AWS EC2 instance using Terraform for infrastructure as code and Docker for containerization.
 
